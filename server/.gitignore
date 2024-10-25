@@ -1,0 +1,12 @@
+# Ignorar directorio node_modules/
+node_modules/
+ 
+# Ignorar archivos de configuración local
+.env
+ 
+# Ignorar archivos generados después de la construcción del proyecto
+/build/
+/dist/
+ 
+# Ignorar archivos generados por el sistema operativo macOS
+.DS_Store
