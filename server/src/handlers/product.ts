@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Product from '../models/Product';
 
-export const createProduct = async (req: Request, res: Response) => {
+const createProduct = async (req: Request, res: Response) => {
   try {
     const products = await Product.create(req.body);
     res.json({ data: products });
@@ -10,7 +10,7 @@ export const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-export const getProducts = async (_req: Request, res: Response) => {
+const getProducts = async (_req: Request, res: Response) => {
   try {
     const products = await Product.findAll({
       order: [['id', 'ASC']]
@@ -21,7 +21,7 @@ export const getProducts = async (_req: Request, res: Response) => {
   }
 };
 
-export const getProductByID = async (req: Request, res: Response) => {
+const getProductByID = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const product = await Product.findByPk(id);
@@ -37,7 +37,7 @@ export const getProductByID = async (req: Request, res: Response) => {
   }
 };
 
-export const updateProduct = async (req: Request, res: Response) => {
+const updateProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const product = await Product.findByPk(id);
@@ -56,7 +56,7 @@ export const updateProduct = async (req: Request, res: Response) => {
   }
 };
 
-export const updateStockAvailability = async (req: Request, res: Response) => {
+const updateStockAvailability = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const product = await Product.findByPk(id);
@@ -75,7 +75,7 @@ export const updateStockAvailability = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteProduct = async (req: Request, res: Response) => {
+const deleteProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const product = await Product.findByPk(id);
@@ -91,4 +91,13 @@ export const deleteProduct = async (req: Request, res: Response) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export default {
+  getProducts,
+  getProductByID,
+  createProduct,
+  updateProduct,
+  updateStockAvailability,
+  deleteProduct
 };

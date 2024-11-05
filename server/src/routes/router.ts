@@ -1,41 +1,44 @@
 import { Router } from 'express';
 import { param } from 'express-validator';
-import {
-  updateStockAvailability,
-  createProduct,
-  getProductByID,
-  getProducts,
-  updateProduct,
-  deleteProduct
-} from '../handlers/product';
+import handler from '../handlers/product';
 import { handleInputErrors, handleBodyValidations } from '../middlewares';
 
 const router: Router = Router();
 
-router.get('/', getProducts);
+router.get('/', handler.getProducts);
 router.get(
   '/:id',
   param('id').isInt().withMessage('id must be an integer'),
   handleInputErrors,
-  getProductByID
+  handler.getProductByID
 );
 
-router.post('/', handleBodyValidations, handleInputErrors, createProduct);
+router.post(
+  '/',
+  handleBodyValidations,
+  handleInputErrors,
+  handler.createProduct
+);
 
-router.put('/:id', handleBodyValidations, handleInputErrors, updateProduct);
+router.put(
+  '/:id',
+  handleBodyValidations,
+  handleInputErrors,
+  handler.updateProduct
+);
 
 router.patch(
   '/:id',
   param('id').isInt().withMessage('id must be an integer'),
   handleInputErrors,
-  updateStockAvailability
+  handler.updateStockAvailability
 );
 
 router.delete(
   '/:id',
   param('id').isInt().withMessage('id must be an integer'),
   handleInputErrors,
-  deleteProduct
+  handler.deleteProduct
 );
 
 export default router;
