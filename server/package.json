@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "jest --detectOpenHandles",
     "ts-node": "ts-node",
     "dev": "ts-node-dev src/index.ts"
   },

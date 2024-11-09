@@ -9,4 +9,8 @@ const server: express.Express = express();
 server.use(express.json());
 server.use('/api/products', productsRouter);
 
+server.use('/api', (_req, res) => {
+  res.status(200).json({ message: 'API is running' });
+});
+
 export default server;

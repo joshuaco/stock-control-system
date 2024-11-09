@@ -4,16 +4,17 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const db = new Sequelize(process.env.DB_URL, {
-  models: [__dirname + '/../models/*.ts']
+  models: [__dirname + '/../models/*.ts'],
+  logging: false
 });
 
 export async function connectDB() {
   try {
     await db.authenticate();
     db.sync();
-    console.log(colors.green('Connected to the database'));
+    //console.log(colors.green('Connected to the database'));
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     console.log(colors.red('Error connecting to the database'));
   }
 }
