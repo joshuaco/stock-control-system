@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "ts-node-dev src/index.ts",
     "test": "jest --detectOpenHandles",
-    "ts-node": "ts-node",
-    "dev": "ts-node-dev src/index.ts"
+    "pretest": "ts-node ./src/data --clear"
   },
   "keywords": [],
   "author": "Joshua",

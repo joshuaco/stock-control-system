@@ -48,7 +48,6 @@ const updateProduct = async (req: Request, res: Response) => {
     }
 
     await product.update(req.body);
-    await product.save();
 
     res.json({ data: product });
   } catch (error) {

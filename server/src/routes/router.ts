@@ -22,6 +22,7 @@ router.post(
 
 router.put(
   '/:id',
+  param('id').isInt().withMessage('id must be an integer'),
   handleBodyValidations,
   handleInputErrors,
   handler.updateProduct

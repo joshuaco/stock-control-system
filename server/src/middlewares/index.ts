@@ -23,6 +23,7 @@ export const handleBodyValidations = async (
 ) => {
   await check('name').notEmpty().withMessage('Name is required').run(req);
   await check('price')
+    .notEmpty()
     .isNumeric()
     .custom((value) => value > 0)
     .withMessage('Price must be greater than 0')
