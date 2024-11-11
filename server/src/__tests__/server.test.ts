@@ -10,3 +10,11 @@ describe('Test server', () => {
     expect(response.body.message).toBe('API is running');
   });
 });
+
+jest.mock('../config/db');
+
+describe('connectDB', () => {
+  it('should handle database connection error', async () => {
+    // TODO: Mock the db.authenticate() method to throw an error
+  });
+});
