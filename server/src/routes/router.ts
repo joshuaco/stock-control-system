@@ -6,6 +6,7 @@ import { handleInputErrors, handleBodyValidations } from '../middlewares';
 const router: Router = Router();
 
 router.get('/', handler.getProducts);
+
 router.get(
   '/:id',
   param('id').isInt().withMessage('id must be an integer'),
