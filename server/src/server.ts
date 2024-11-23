@@ -1,5 +1,6 @@
 import express from 'express';
 import { connectDB } from './config/db';
+import cors, { CorsOptions } from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec, { swaggerUIoptions } from './config/swagger';
 import productsRouter from './routes/router';
@@ -7,6 +8,15 @@ import productsRouter from './routes/router';
 connectDB();
 
 const server: express.Express = express();
+
+server.disable('x-powered-by');
+
+const corsOptions: CorsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200
+};
+
+server.use(cors(corsOptions));
 
 server.use(express.json());
 server.use('/api/products', productsRouter);
