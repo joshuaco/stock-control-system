@@ -1,4 +1,4 @@
-import { ActionFunctionArgs } from 'react-router-dom';
+import { ActionFunctionArgs, redirect } from 'react-router-dom';
 import { addProduct } from '../services/ProductService';
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -10,7 +10,7 @@ export async function action({ request }: ActionFunctionArgs) {
     return error;
   }
 
-  addProduct(data);
+  await addProduct(data);
 
-  return {};
+  return redirect('/');
 }

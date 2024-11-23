@@ -15,12 +15,10 @@ export async function addProduct(product: ProductData) {
 
     if (parsed.success) {
       const URL = `${import.meta.env.VITE_API_URL}/api/products`;
-      const { data } = await axios.post(URL, {
+      await axios.post(URL, {
         name: parsed.output.name,
         price: parsed.output.price
       });
-
-      console.log(data);
     } else {
       throw new Error('Invalid data');
     }
