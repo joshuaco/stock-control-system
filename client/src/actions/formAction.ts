@@ -1,7 +1,7 @@
 import { ActionFunctionArgs, redirect } from 'react-router-dom';
-import { addProduct } from '../services/ProductService';
+import { addProduct, updateProduct } from '../services/ProductService';
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request, params }: ActionFunctionArgs) {
   const data = Object.fromEntries(await request.formData());
   let error = '';
 
@@ -10,7 +10,11 @@ export async function action({ request }: ActionFunctionArgs) {
     return error;
   }
 
-  await addProduct(data);
+  if (params.id) {
+    await updateProduct(+params.id, data);
+  } else {
+    await addProduct(data);
+  }
 
   return redirect('/');
 }
