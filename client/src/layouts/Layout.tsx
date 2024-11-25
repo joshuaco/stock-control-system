@@ -1,4 +1,6 @@
 import { Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Layout() {
   return (
@@ -14,6 +16,8 @@ function Layout() {
       <main className='mx-auto mt-10 max-w-xl md:max-w-3xl lg:max-w-6xl p-10 bg-white shadow'>
         <Outlet />
       </main>
+
+      <ToastContainer />
     </>
   );
 }

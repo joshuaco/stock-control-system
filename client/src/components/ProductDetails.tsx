@@ -1,6 +1,8 @@
 import { Form, Link, useFetcher } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Product } from '../types/index';
 import { formatCurrency } from '../utils';
+import Swal from 'sweetalert2';
 
 interface ProductDetailsProps {
   product: Product;
@@ -10,9 +12,22 @@ function ProductDetails({ product }: ProductDetailsProps) {
   const isAvailable = product.inStock;
   const fetcher = useFetcher();
 
-  const handleConfirmDelete = (e: React.FormEvent<HTMLFormElement>) => {
-    if (!confirm('Are you sure you want to delete this product?')) {
-      e.preventDefault();
+  const handleConfirmDelete = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const result = await Swal.fire({
+      title: 'Do you want to delete this product?',
+      text: 'This action cannot be undone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    });
+
+    if (result.isConfirmed) {
+      fetcher.submit(e.target as HTMLFormElement);
+      toast.success('Product deleted successfully');
     }
   };
 
